@@ -20,7 +20,7 @@ function getIdFromButton(): number{
 
 function findProducto(id: number): void{
     console.log("----------------------------------")
-    console.log("Llamada a la función FIND EMPLEADO")
+    console.log("Llamada a la función FIND PRODUCTO")
     console.log("----------------------------------")
 
     getProducto(id)
