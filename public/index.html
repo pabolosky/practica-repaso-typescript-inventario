@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <style>
+        h1{text-align: center;}
+        div{text-align: center;}
+        #salida{margin-top: 40px; font-size: 17px;}
+        button{font-size: 18px; background-color: purple; color: white;}
+    </style>
 </head>
 <body>
 
     <h1>Inventario en TypeScript — Pablo García</h1>
-    <button id="btn-id">Buscar por ID</button>
-    <button id="btn-cat">Buscar por categoría</button>
+    <div id="contenedor">
+        <button id="btn-id">Buscar por ID</button>
+    </div>
     <div id="salida"></div>
+
+    <script type="module" src="../dist/main.js"></script>
     
 </body>
 </html>
