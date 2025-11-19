@@ -1,0 +1,163 @@
+GIT:
+
+-Repositorios
+git add . -> git commit -m "texto" -> git push
+
+-Ramas
+git checkout -b <nombre> # Crear rama
+git checkout <nombre> # Cambiar a rama
+git branch # Ver ramas
+git -D <nombre> #Borrar rama
+
+-Servicio Promesas
+import { Pais } from "ruta" 
+import { paises } from "ruta"
+# Importamos lo necesario
+export function funcion(id: number): Promise<Pais>{  # Le pasamos una variable de tipo number y la función devolverá una variable de tipo Promesa<Pais>
+
+    let promesa = new Promise((resolve, reject) =>{  # Crear la promesa que devolveremos
+
+        setTimeout(()=>{  # Le damos delay
+
+            let pais = paises.find( p => p.id === id) ?.nombre # Buscamos un país que comparta id con alguno de nuestros paises en domain/entities y le pasamos el nombre
+
+            if(pais){
+                resolve(pais) # Si no hay error pasamos el pais
+            }else{
+                reject(`mensaje de reject`) # Si falla mandamos un mensaje
+            }
+
+        }, 800) #ponemos la cantidad de delay que queremos
+    })
+
+    return promesa as Promise<Pais> # devolvemos la promesa
+}
+
+# También podemos filtrar para recoger más de uno
+let productosF = productos.filter( p => p.categoria === categoria) # Filtramos por la condición que queramos
+
+    if(productosF.length > 0 ){ # Si hay al menos uno lo devolvemos
+        resolve(productosF)
+    }else{
+        reject(`No se encontraron productos con la categoría ${categoria}`) # Si no encuentra ninguno salta el mensaje
+    }
+
+- Construcción de Promesas
+
+# Función para sacar un id pedido por un prompt
+function getIdFromButton(): number{
+
+    let input = prompt("Introduce el id")
+    let id = Number(input)
+
+    if(Number.isNaN(id)){
+        alert("No has introducido un número")
+        return 0
+    }
+    return id
+}
+
+# Función con .then / .catch
+function findPais(id: number): void{  # Pasamos el id del pais que queremos buscar
+
+    getPais(id) # Utilizamos las funcionse de antes para sacar el nombre del pais que conincida con el id que hemos dado
+    .then((pais) => {
+        console.log(pais, "pais") # Imprimimos en la consola el nombre
+        salida.textContent = `El pais buscado es ${pais}` # Cambiamos el contenido del div con id salida al nombre del pais buscado
+    })
+    .catch((error) => {
+        console.log(error, "error") # Imprimimos en la consola si hay error
+        salida.textContent = error # Cambiamos el contenido del div con id salida al error
+    })
+}
+
+# Función asíncrona 
+async function findPaisesPorIdioma(idioma: string): Promise<void>{ # Pasamos el idioma de los paises que queremos buscar
+    try{
+        let paises = await getPaisesPorIdioma(idioma) # Utilizamos las funcionse de antes para sacar el nombre de los paises que conincida con el idioma que hemos dado
+        console.log(paises, "paises") # Imprimimos en la consola los nombres
+
+        salida.textContent = "Paises: " + paises.map(p => `${p.nombre}`).join(", ");  # Cambiamos el contenido del div con id salida a una cadena con los nombres de los paises
+
+    }catch(error: any){
+        console.log("Error:", error.message) # Imprimimos en la consola si hay error
+        salida.textContent = "Idioma no encontrada" # Cambiamos el contenido del div con id salida al error
+    }finally{
+        console.log("Final") # Imprimimos en la consola que ha finalizado el proceso
+    }
+
+}
+
+# Función para mostrar varias variables
+function mostrarPaisYRegion(id: number): void{
+    
+    Promise.all([getPais(id), getRegion(id)])
+    .then(([pais, region]) => {
+        console.log(pais, "País") Imprimimos en la consola el nombre del pais
+        console.log(region, "Región") Imprimimos en la consola el nombre de la región
+
+        salida.textContent = `El país del sitio buscado es ${pais} y la región ${region}` # Cambiamos el contenido del div con id salida al nombre del pais y la región
+    })
+    .catch((err: any) =>{
+        console.log(err, "err") # Imprimimos en la consola si hay error
+        salida.textContent = err # Cambiamos el contenido del div con id salida al error
+    })
+    
+}
+
+- Más información
+# El contenido de tsconfig.ts
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "ES6",
+      "outDir": "dist",
+      "rootDir": "src",
+      "strict": true,
+      "esModuleInterop": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+  }
+
+# La ruta del script en index
+<script type="module" src="../dist/main.js"></script>
+
+# La arquitectura 
+
+public
+   index.html
+src
+   data
+      info.ts
+   domain/entities
+      nombre.ts
+   services
+      getNombreService.ts
+      getNombrePorCondicion.ts
+   main.ts
+tsconfig.ts
+
+# Comando para compilar
+
+npx tsc
+
+# Construcción de variable
+
+export interface Variable{
+    id: number,
+    nombre: string
+}
+
+# Construcción de info.ts
+
+import { Variable } from "ruta" # Importamos la variable
+export const variables: Variable [] = [
+    {id: 1, nombre: "Pablo"},
+    {id: 2, nombre: "Miguel"}
+]
+
+
+
+
+
