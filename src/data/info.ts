@@ -1,6 +1,6 @@
-import { Producto } from "../domain/entities/productos";
+import { Producto } from "../domain/entities/productos.js";
 
-export const producto: Producto[] = [
+export const productos: Producto[] = [
     { id: 1, nombre: "Teclado", categoria: "Periféricos", stock: 10 },
     { id: 2, nombre: "Monitor", categoria: "Pantallas", stock: 5 },
     { id: 3, nombre: "Ratón", categoria: "Periféricos", stock: 20 },
