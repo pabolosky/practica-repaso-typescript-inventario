@@ -140,6 +140,7 @@ tsconfig.ts
 
 # Comando para compilar
 
+npm install -g typescript
 npx tsc
 
 # Construcción de variable
